@@ -5,7 +5,7 @@ import copy #you cannot just say a = z because this just means that a is a new r
 import random
 import matplotlib.animation as animation
 
-# Simulated Annealing algorithm to minimiss the schwefel function
+# Simulated Annealing algorithm to minimise the schwefel function
 # based on matlab function "General simulated annealing algorithm" by Joachim Vandekerckhove
 
 def trial(Order):
