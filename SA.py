@@ -1,14 +1,14 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-import copy #you cannot just say a = z because this just means that a is a new reference to z, instead we acually have to copy the contents over from z to a and then we can change a without changing z
+import copy #cannot just say a = z because this just means that a is a new reference to z, instead we acually have to copy the contents over from z to a and then we can change a without changing z
 import random
 import matplotlib.animation as animation
 
 # Simulated Annealing algorithm to minimise the schwefel function
 # based on matlab function "General simulated annealing algorithm" by Joachim Vandekerckhove
 
-def trial(Order):
+def trial(Order): # used to generate u in a new solution in x_i+1 = x_i + Du
     return np.random.uniform(-1, 1, Order)
 
 
@@ -181,10 +181,6 @@ print("total number of iterations is", total)
 print("final temperature = ", T)
 
 
-# print(plot_data)
-
-
-
 if order == 2:
 
     #data to plot the schwefel contours
@@ -234,230 +230,3 @@ if order == 2:
     ani = animation.FuncAnimation(fig, animate, init_func = init, frames = np.arange(0, total+1), interval = 5, repeat = True, blit = True, repeat_delay = 1000)
     plt.show()
     plt.close(fig)
-    if fval < -835:
-        ani.save(filename = ("data"+ ".html"))
-
-
-
-
-
-
-
-
-
-
-
-
-#
-#
-#
-# for iter in range(0, timeout):
-#     u = trial(order)
-#     x_trial = x + np.matmul(D,u)
-#     df = d_f(x, x_trial, order)
-#
-#     if
-#
-#
-#
-#
-#
-#     print("Iteration %d:" %iter)
-#     print(first_acceptance)
-#     print("x = ",x, f(x, order))
-#     print("u = ", u)
-#     print("D = ", D)
-#     print("T = ", T)
-#     print("x_trial = ", x_trial, f(x_trial, order))
-#     print("df = ", df)
-#
-#     if first_acceptance == True:
-#         if df > 0:
-#             print("increase in f", df)
-#             if accept(df, T, 1) == True:
-#                 print("selecting the increase in f")
-#                 first_acceptance = False # after initialising with average step size d = 1, all subsequent step sizes can now be determined
-#                 acceptance_counter += 1 #counting the number of acceptances
-#                 x_prev = copy.deepcopy(x) # storing previous solution
-#                 x = copy.deepcopy(x_trial) # updating x
-#                 if np.any(x == x_prev) == True:
-#                 # if x == x_prev:
-#                     same_solution_counter += 1 # counting the number of times the same solution is repreated
-#                 else:
-#                     same_solution_counter = 0 # restarting the counter
-#                 print("updating D")
-#                 D = update_D(D, alpha, omega, u, order) # updating D using the method described by Parks [1990]
-#                 #no need to check T in the first iteration
-#         else:
-#             first_acceptance = False # after initialising with average step size d = 1, all subsequent step sizes can now be determined
-#             acceptance_counter += 1 #counting the number of acceptances
-#             x_prev = copy.deepcopy(x) # storing previous solution
-#             x = copy.deepcopy(x_trial) # updating x
-#             if np.any(x == x_prev) == True:
-#                 same_solution_counter += 1
-#             else:
-#                 same_solution_counter = 0
-#             update_D(D, alpha, omega, u, order)
-#             # no need to check T in the first iteration
-#     else:
-#         if df > 0:
-#             if accept(df, T, calculate_step_size(D, u, order)) == True:
-#                 acceptance_counter += 1
-#                 x_prev = copy.deepcopy(x) # storing previous solution
-#                 x = copy.deepcopy(x_trial) # updating x
-#                 if np.any(x == x_prev) == True:
-#                     same_solution_counter += 1
-#                 else:
-#                     same_solution_counter = 0
-#                 update_D(D, alpha, omega, u, order)
-#                 (change_T, T_next) = check_T(T, temperature_decrement_constant, markov_length, same_solution_counter, minimum_acceptances, acceptance_counter)
-#                 if change_T == True:
-#                     print("successfully changing T")
-#                     print("T =", T)
-#                     T = copy.deepcopy(T_next)
-#                     print("T = ", T)
-#         else:
-#             acceptance_counter += 1
-#             x_prev = copy.deepcopy(x) # storing previous solution
-#             x = copy.deepcopy(x_trial) # updating x
-#             if np.any(x == x_prev) == True:
-#                 same_solution_counter += 1
-#             else:
-#                 same_solution_counter = 0
-#             update_D(D, alpha, omega, u, order)
-#             (change_T, T_next) = check_T(T, temperature_decrement_constant, markov_length, same_solution_counter, minimum_acceptances, acceptance_counter)
-#             if change_T == True:
-#                 print("successfully changing T")
-#                 print("T =", T)
-#                 T = copy.deepcopy(T_next)
-#                 print("T = ", T)
-#
-#
-#
-#
-#
-#
-# # for iter in range(0, timeout):
-# #     u = trial(order)
-# #     x_trial = x + np.matmul(D,u)
-# #     df = f(x, x_trial, order)
-# #
-# #     if first_acceptance == True: # the initial actual step size cannot be calculated so we just use a step size of 1 initially
-# #         if df > 0:
-# #             if accept(df, T, 1) == True:
-# #                 first_acceptance = False
-# #                 acceptance_counter += 1
-# #                 x = copy.deepcopy(x_trial)
-# #                 update_D(D, alpha, omega, u, order)
-# #
-# #                 if x == x_prev:
-# #                     same_solution_counter += 1 # keep counting the number of times
-# #                 else:
-# #                     same_solution_counter = 0
-# #                 x_prev = copy.deepcopy(x)
-# #
-# #                 check_T(T, temperature_decrement_constant, same_solution_counter)
-# #
-# #             else:
-# #                 check_T(T, temperature_decrement_constant, same_solution_counter)
-# #         else:
-# #             acceptance_counter += 1
-# #             x = copy.deepycopy(x_trial)
-# #             update_D(D, alpha, omega, u, order)
-# #             check_T(T, temperature_decrement_constant, same_solution_counter)
-# #     else:
-# #         if df > 0:
-# #             if accept(df, T, calculate_step_size(R, order)) == True:
-# #                 first_acceptance = False
-# #                 acceptance_counter += 1
-# #                 x = copy.deepcopy(x_trial)
-# #                 update_D(D, alpha, omega, u, order)
-# #
-# #                 if x == x_prev:
-# #                     same_solution_counter += 1 # keep counting the number of times
-# #                 else:
-# #                     same_solution_counter = 0
-# #                 x_prev = copy.deepcopy(x)
-# #
-# #                 check_T(T, temperature_decrement_constant, same_solution_counter)
-# #
-# #             else:
-# #                 check_T(T, temperature_decrement_constant, same_solution_counter)
-# #         else:
-# #             acceptance_counter += 1
-# #             x = copy.deepycopy(x_trial)
-# #             update_D(D, alpha, omega, u, order)
-# #             check_T(T, temperature_decrement_constant, same_solution_counter)
-# #
-# #
-# #
-# #
-# #     if df > 0:
-# #         accept?
-# #         if yes:
-# #             update x
-# #             increase acceptance_counter
-# #             update d
-# #             need to update T?
-# #         else:
-# #             need to update T?
-# #             resample
-# #     else:
-# #         update x
-# #         increase acceptance_counter
-# #         update d
-# #         need to update T?
-# #         resample
-# #
-# #
-# #
-# #
-# #         if accept(df, T) == True:
-# #             acceptance_counter += 1
-# #
-# #
-# #         else:
-# #             x_trial = x_initial + np.matmul(D,trial(order))
-# #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
-# parsley
-# coriander
-# spinach major component
-# celery
-# gooseberry
-# ginger
-# greenapple
-# mint
-# green grapes
-# lemon
-# kale
-# cucumber
-# jeera
-# salt
-# pepper
-
-""""""

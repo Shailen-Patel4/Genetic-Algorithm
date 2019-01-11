@@ -61,7 +61,6 @@ def roulette(pop, select):
             if p > p_cum:
                 if i == len(pop_copy): #protection against numerical errors when probabilities do not add to 1
                     selected.append(pop_copy[i-1])
-                    # p_cum += pop_copy[i][2]
                     break
                 else:
                     p_cum += pop_copy[i][2]
@@ -304,27 +303,3 @@ if order == 2:
 
     plt.show()
     plt.close(fig)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-""""""
