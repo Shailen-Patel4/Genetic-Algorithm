@@ -8,7 +8,6 @@ import matplotlib.animation as animation
 # Genetic Algorithm used to find the global minimum of the 5th order schwefel function
 
 def binary2decimal(binary, Bits):
-    # binary.reverse() #need to reverse the sequence to feed it into the loop the correct direction
     decimal = 0
     for bit in range(0, Bits):
         if binary[bit] == 1:
