@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-import copy #cannot just say a = z because this just means that a is a new reference to z, instead we acually have to copy the contents over from z to a and then we can change a without changing z
+import copy #cannot say a = z because this just means that a is a new reference to z, instead we acually have to copy the contents over from z to a and then we can change a without changing z
 import random
 import matplotlib.animation as animation
 

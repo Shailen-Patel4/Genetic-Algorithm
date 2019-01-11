@@ -279,7 +279,7 @@ if order == 2:
 
     scatter_plot_template, = plt.plot([], [], 'r*')
 
-    iteration_template = 'Iteration = %d' #this is a string template where %f means a floating point number and %.1f means that floating point number is rounded to a precision of 1
+    iteration_template = 'Iteration = %d' #string template where %f means a floating point number and %.1f means that floating point number is rounded to a precision of 1
     iteration_text = plt.text(-450, -450, '', fontsize = 15, bbox = dict(facecolor='blue', alpha=0.5))#alpha is the transparency of the box i.e. meaning that alpha = 1 is opaque
     def animate(i):
         x1 = []
